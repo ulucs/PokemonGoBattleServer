@@ -1,0 +1,52 @@
+extends layout.pug
+
+block content
+  h1 Team Builder
+  div
+    ul.nav.nav-pills#pageTabs(role='tablist')
+      li.active(role='presentation')
+        a(href='#select', aria-controls='select', role='tab', data-toggle='tab') Select
+      li(role='presentation')
+        a(href='#import', aria-controls='import', role='tab', data-toggle='tab') Import
+      li(role='presentation')
+        a(href='#review', aria-controls='review', role='tab', data-toggle='tab') Review
+    .tab-content
+      #import.tab-pane.fade(role='tabpanel')
+        p You can import your Pokemon using your Google account, PTC account or by the Google Token you can generate by using curl/wget.
+        button.btn.btn-primary(data-toggle='collapse',data-target='#codes') Show cURL/wget commands
+        .collapse#codes
+          pre
+            |curl "https://android.clients.google.com/auth" --data "Email=REPLACE_WITH_EMAIL&Passwd=REPLACE_WITH_PASSWORD&service=ac2dm&add_account=1" <br>
+            |wget "https://android.clients.google.com/auth" --post-data "Email=REPLACE_WITH_EMAIL&Passwd=REPLACE_WITH_PASSWORD&service=ac2dm&add_account=1"
+
+        //-If you are not comfortable with using this method, you are welcome to use our open-source import tool from the #[a(href='/downloads') downloads page].
+        div
+          form.form-signin#importform(method="post", action="/import")
+            h2.form-import-heading Import
+            label(for='ptcOrGoogle') Account Type
+            select#ptcOrGoogle.form-control
+              option PTC
+              option Google
+              option GoogleToken
+            br
+            label.sr-only(for='name') Email address
+            input.form-control(type='email', name='name', placeholder='Email address', required='', autofocus='')
+            label.sr-only(for='pass') Password
+            input.form-control(type='password', name='pass', placeholder='Password / Token', required='')
+            button.btn.btn-md.btn-primary.btn-block Import
+      #select.tab-pane.fade.in.active(role='tabpanel')
+        #sortOptions.row
+        #importedPokemon.row.pokemon
+          p It seems you have not imported Pokemon before. You can use the #[a(href='#import') Import] tab above to import Pokemon.
+      #review.tab-pane.fade(role='tabpanel')
+        h2 Your selected team
+        #selectedContainer.row.pokemon
+        br
+        .row
+          .col-xs-8.col-xs-offset-2.col-md-4.col-md-offset-4
+            button.btn.btn-md.btn-primary.btn-block(onClick='saveTeam()') Save team
+    br
+    #alertContainer
+
+block scripts
+  script(src="builder.js")

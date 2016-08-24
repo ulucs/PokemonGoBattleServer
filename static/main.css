@@ -1,0 +1,107 @@
+body {
+	padding-top: 40px;
+	padding-bottom: 40px;
+}
+
+.tab-content {
+	padding-top: 20px;
+}
+
+.pokemon.row {
+	margin-top: 10px;
+}
+
+.pokemon-container-container {
+	padding: 3px;
+}
+
+.pokemon-container {
+	background-color: #eee;
+	border-radius: 10px;
+	padding-bottom: 8px;
+}
+
+.pokemon-container.selected {
+	background-color: #bfb;
+}
+
+.pokemon-container:hover {
+	background-color: #ccc;
+}
+
+.pokemon-container:active {
+	background-color: #aaa;
+}
+
+.pokemon-container img {
+	max-width: 100%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.pokemon-container h5 {
+	text-align: center;
+	color: #222;
+}
+
+.pokemon-container table {
+	color: #222;
+	width: 100%;
+	margin: auto;
+}
+
+.pokemon-container td+td {
+	text-align: right;
+	width: 40%;
+}
+
+.page-container {
+	width: 90%;
+	max-width: 840px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="email"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+

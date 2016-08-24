@@ -1,0 +1,54 @@
+{
+pogobuf : require('pogobuf'),
+POGOProtos : require('node-pogo-protos'),
+
+Glogin : new pogobuf.GoogleLogin(),
+PTClogin : new pogobuf.PTCLogin(),
+client : new pogobuf.Client(),
+
+levelf : (x) => 41*x^2,
+
+// Login to Google and get a login token
+googleMethod : (name,pass) => login.login(name, pass)
+    .then(token => {
+        // Initialize the client
+        client.setAuthInfo('google', token);
+        client.setPosition(0,0);
+
+        // Uncomment the following if you want to see request/response information on the console
+        // client.on('request', console.dir);
+        // client.on('response', console.dir);
+
+        // Perform the initial request
+        return client.init();
+    })
+    .then(() => {
+        // Get full inventory
+        return client.getInventory(0);
+    })
+    .then(inventory => {
+        if (!inventory.success) throw Error('success=false in inventory response');
+
+        var pokeArr = []
+
+        // Split inventory into individual arrays and log them on the console
+        inventory = pogobuf.Utils.splitInventory(inventory);
+        // console.log('Pokemons:', inventory.pokemon);
+        inventory.pokemon.forEach(function(pokemon){
+            var tCP = pokemon.cp_multiplier+pokemon.additional_cp_multiplier;
+            var pokeObj = {
+                id: pokemon.pokemon_id,
+                nickname: pokemon.nickname,
+                level: levelf(tCP),
+                aIV: pokemon.individual_attack,
+                dIV: pokemon.individual_defense,
+                hIV: pokemon.individual_stamina,
+                move1: pokemon.move_1,
+                move2: pokemon.move_2
+            }
+            pokeArr.push(pokeObj);
+        })
+        return pokeArr
+    })
+    .catch(console.error)
+}

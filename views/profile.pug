@@ -1,0 +1,23 @@
+extends layout.pug
+
+block content
+  h1= user
+  h2 Current Team
+  .row
+    each pokemon in pokemons
+      .col-md-2.col-sm-3.col-xs-4.pokemon-container-container
+        #pokemon1.col-xs-12.pokemon-container(onclick='selectPokemon(1)')
+          h5= pokemon.nickname || pokemonNames[pokemon.id]
+          img(src='/imgs/'+pokemon.id+'.png')
+          br
+          table
+            tbody
+              tr
+                td Attack IV:
+                td= pokemon.aIV
+              tr
+                td Defense IV:
+                td= pokemon.dIV
+              tr
+                td Stamina IV:
+                td= pokemon.sIV

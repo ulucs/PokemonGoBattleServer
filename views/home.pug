@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+  h1 Pokemon Go Battle Network
+
+  h2 Welcome!
+  p This is the remnants of my project to let people play PvP by using their Pokemon Go accounts. However, I've decided to halt this project as Niantic has heavily opposed the use of third party components to access their private API and banned my account which I used to test this service.
+  p If you want to see how this works, I've created a "guest" account which contains the Pokemon from my former account:
+  ul
+    li Email: 
+      i testAccount@pgbn.com
+    li Password: 
+      i testPass
+  p The backend is built on cyraxx'es really cool #[a(href='https://github.com/cyraxx/pogobuf') Pogobuf], which only lacked the Token-based login method (which got added with my pull request anyway). Major thanks to him for essentially making this prototype possible. The Pokemon importing system should still be working, so you can register a new account to look at your team; but I strongly recommend against that as my account was banned.
+  p The other half of this project (the actual battling) is located in my Github as #[a(href='https://github.com/ulucs/PokemonGoBattle') PokemonGoBattle], a Löve2D-based videogame. The game connects to the server to retrieve your selected Pokemon team and interact with your friends over TCP sockets. If you open two instances of the game (or connect to each other with your friend), you will actually be able to battle each other over the internet!
+  p Don't forget to check out the source code of this project in #[a(href='https://github.com/ulucs/PokemonGoBattleServer') my Github]!
